@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Employees</string>
+    <string name="employees">Employees</string>
+    <string name="no_desc">no_desc</string>
+    <string name="employee">Employee</string>
+    <string name="manager">Manager</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_your_password">Forgot Your Password?</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="don_t_have_an_account">"Don't have an account?   "</string>
+    <string name="already_have_an_account">"Already Have an Account?   "</string>
+    <string name="your_email">Your email</string>
+    <string name="mary123_nhs_net">Mary123@NHS.net</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_check_email_for_password_reset_link">Please check email for password reset link</string>
+    <string name="new_password">New password</string>
+    <string name="back">Back</string>
+    <string name="hr_details">HR Details</string>
+    <string name="work_contract">Work contract</string>
+    <string name="staff_number">Staff Number</string>
+    <string name="user_name">User Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="hire_date">Hire Date</string>
+    <string name="job_role">Job Role</string>
+    <string name="mobile_telephone">Mobile/ Telephone</string>
+    <string name="today">Today</string>
+    <string name="log_out">Log Out</string>
+    <string name="timesheets">Timesheets</string>
+    <string name="available_bank_duties">Available Bank Duties</string>
+    <string name="view_roster">View Roster</string>
+    <string name="my_profile">My Profile</string>
+</resources>
