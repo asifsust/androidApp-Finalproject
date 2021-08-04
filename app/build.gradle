@@ -16,6 +16,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     buildTypes {
@@ -24,29 +25,43 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    dependenciesInfo {
-        includeInApk true
-        includeInBundle true
-    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //sdp and ssp
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
     //material
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.3.0'
+
+    //circle image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //mvvm and databinding
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
+    //retrofit logging interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //universal image loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:background="@drawable/drawer_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+        <ScrollView
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:paddingTop="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:background="?attr/selectableItemBackground"
+                    android:id="@+id/imageCloseDrawer"
+                    android:layout_marginStart="16dp"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_icon_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginBottom="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/noman_ali"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" />
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:text="Noman Ali khan"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/drawer_text_color"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:text="Noman Ali khan"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="#6F8BA4"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/layoutShare"
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_marginStart="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_icon_share"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <TextView
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/share_app"
+                            android:textColor="#77838F"
+                            android:layout_marginStart="32dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutRate"
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_marginStart="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_icon_rate_app"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <TextView
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/rate_app"
+                            android:textColor="#77838F"
+                            android:layout_marginStart="32dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:padding="2dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_icon_about"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <TextView
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/about"
+                            android:textColor="#77838F"
+                            android:layout_marginStart="32dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:padding="2dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_icon_reset"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+
+                        <TextView
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/reset"
+                            android:textColor="#77838F"
+                            android:layout_marginStart="32dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/settingLayout"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_setting_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:text="@string/settings"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/drawer_setting_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutLogout"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_drawer_logout"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+
+                <TextView
+                    android:text="@string/log_out"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/drawer_setting_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>

@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.example.employees.session.UserSession;
+
 public class SplashActivity extends AppCompatActivity {
+
+    public UserSession userSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,15 +19,31 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                login();
+        userSession = new UserSession(this);
+
+        new Handler().postDelayed(() -> {
+            if (!userSession.getLoginStatus()) login();
+            else {
+//                login();
+                if (userSession.getRoleId() == 1) managerHome();
+                else employeeHome();
+               //managerHome();
             }
         }, 5000);
     }
 
+    private void managerHome() {
+        startActivity(new Intent(this,ManagerHomeActivity.class));
+        finish();
+    }
+
+    private void employeeHome() {
+        startActivity(new Intent(this,EmployeeHomeActivity.class));
+        finish();
+    }
+
     void login(){
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this,LoginActivity.class));
+        finish();
     }
 }

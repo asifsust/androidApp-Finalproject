@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employee_navigation"
+    app:startDestination="@id/employeeRoasterFragment">
+
+    <fragment
+        android:id="@+id/employeeRoasterFragment"
+        android:name="com.example.employees.view.EmployeeRoasterFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_employee_roaster" >
+        <action
+            android:id="@+id/action_employeeRoasterFragment_to_availableBankDutiesFragment"
+            app:destination="@id/availableBankDutiesFragment" />
+        <action
+            android:id="@+id/action_employeeRoasterFragment_to_employeeProfileFragment"
+            app:destination="@id/employeeProfileFragment" />
+        <action
+            android:id="@+id/action_employeeRoasterFragment_to_personalRoasterFragment"
+            app:destination="@id/personalRoasterFragment" />
+        <action
+            android:id="@+id/action_employeeRoasterFragment_to_employeeTimeSheetsFragment"
+            app:destination="@id/employeeTimeSheetsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/availableBankDutiesFragment"
+        android:name="com.example.employees.view.AvailableBankDutiesFragment"
+        android:label="Available Bank Duties"
+        tools:layout="@layout/fragment_available_bank_duties" />
+    <fragment
+        android:id="@+id/employeeProfileFragment"
+        android:name="com.example.employees.view.EmployeeProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_employee_profile" />
+    <fragment
+        android:id="@+id/personalRoasterFragment"
+        android:name="com.example.employees.view.PersonalRoasterFragment"
+        android:label="Personal Roaster"
+        tools:layout="@layout/fragment_personal_roaster" />
+    <fragment
+        android:id="@+id/employeeTimeSheetsFragment"
+        android:name="com.example.employees.view.EmployeeTimeSheetsFragment"
+        android:label="Time Sheets "
+        tools:layout="@layout/fragment_employee_time_sheets" />
+
+</navigation>

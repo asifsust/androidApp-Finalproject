@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawerLayout"
+    tools:context=".ManagerHomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:theme="@style/AppTheme.Toolbar"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
+
+        <View
+            android:id="@+id/viewBelowToolbar"
+            android:layout_below="@id/toolbar"
+            android:background="@drawable/ic_below_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
+
+        <!--<RelativeLayout
+            android:id="@+id/toolbarLayout"
+            android:background="@drawable/ic_home_manager_toolbar"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageMenu"
+                android:tag="menu"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="25dp"
+                android:src="@drawable/ic_icon_menu"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/white" />
+
+
+            <LinearLayout
+                android:paddingTop="16dp"
+                android:paddingBottom="25dp"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_home_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/textManagerToolbarTitle"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:text="@string/employees"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageAddNewEmp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="25dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_icon_add_document"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/white" />
+
+        </RelativeLayout>-->
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_below="@+id/viewBelowToolbar"
+            android:layout_above="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <fragment
+                android:id="@+id/my_nav_host_fragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/manager_navigation"/>
+
+        </FrameLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:elevation="8dp"
+            app:elevation="8dp"
+            app:labelVisibilityMode="labeled"
+            android:background="@drawable/rounded_solid_small"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:menu="@menu/manager_home_menus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_gravity="start"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/drawer_layout"/>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

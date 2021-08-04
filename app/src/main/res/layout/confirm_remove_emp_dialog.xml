@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/rounded_solid_small"
+    >
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:text="@string/enter_password"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/imageClose"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:padding="8dp"
+                android:background="@drawable/circle_theme"
+                android:src="@drawable/ic_icon_cross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/white" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:hint="@string/password"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="text|textMultiLine"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/back_employee_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCancel"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/cancel"
+                android:background="@drawable/rounded_solid_rectangle_65"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonConfirm"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/confirm"
+                android:background="@drawable/rounded_solid_rectangle"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
