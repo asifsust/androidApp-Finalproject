@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/employeeRoasterFragment"
-        android:name="com.example.employees.view.EmployeeRoasterFragment"
+        android:name="com.example.employees.view.fragment.employee.EmployeeRoasterFragment"
         android:label="Home"
         tools:layout="@layout/fragment_employee_roaster" >
         <action
@@ -25,22 +25,22 @@
     </fragment>
     <fragment
         android:id="@+id/availableBankDutiesFragment"
-        android:name="com.example.employees.view.AvailableBankDutiesFragment"
+        android:name="com.example.employees.view.fragment.employee.AvailableBankDutiesFragment"
         android:label="Available Bank Duties"
         tools:layout="@layout/fragment_available_bank_duties" />
     <fragment
         android:id="@+id/employeeProfileFragment"
-        android:name="com.example.employees.view.EmployeeProfileFragment"
+        android:name="com.example.employees.view.fragment.employee.EmployeeProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_employee_profile" />
     <fragment
         android:id="@+id/personalRoasterFragment"
-        android:name="com.example.employees.view.PersonalRoasterFragment"
+        android:name="com.example.employees.view.fragment.employee.PersonalRoasterFragment"
         android:label="Personal Roaster"
         tools:layout="@layout/fragment_personal_roaster" />
     <fragment
         android:id="@+id/employeeTimeSheetsFragment"
-        android:name="com.example.employees.view.EmployeeTimeSheetsFragment"
+        android:name="com.example.employees.view.fragment.employee.EmployeeTimeSheetsFragment"
         android:label="Time Sheets "
         tools:layout="@layout/fragment_employee_time_sheets" />
 

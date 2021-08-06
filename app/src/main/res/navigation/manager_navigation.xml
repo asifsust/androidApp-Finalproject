@@ -9,12 +9,12 @@
 
     <fragment
         android:id="@+id/managerProfileFragment"
-        android:name="com.example.employees.ManagerProfileFragment"
+        android:name="com.example.employees.view.fragment.manager.ManagerProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_manager_profile"/>
     <fragment
         android:id="@+id/employeesFragment"
-        android:name="com.example.employees.EmployeesFragment"
+        android:name="com.example.employees.view.fragment.manager.EmployeesFragment"
         android:label="@string/employees"
         tools:layout="@layout/fragment_employees">
         <action
@@ -29,20 +29,26 @@
         <action
             android:id="@+id/action_employeesFragment_to_addNewEmployeeFragmentForUpdate"
             app:destination="@id/addNewEmployeeFragment" />
+        <action
+            android:id="@+id/action_employeesFragment_to_allShiftsFragment"
+            app:destination="@id/allShiftsFragment" />
+        <action
+            android:id="@+id/action_employeesFragment_to_allWardsFragment"
+            app:destination="@id/allWardsFragment" />
     </fragment>
     <fragment
         android:id="@+id/shiftsFragment"
-        android:name="com.example.employees.ShiftsFragment"
+        android:name="com.example.employees.view.fragment.manager.ShiftsFragment"
         android:label="@string/shifts"
         tools:layout="@layout/fragment_shifts" />
      <fragment
         android:id="@+id/timesheetsFragment"
-        android:name="com.example.employees.TimesheetsFragment"
+        android:name="com.example.employees.view.fragment.manager.TimesheetsFragment"
         android:label="@string/timesheets"
         tools:layout="@layout/fragment_timesheets" />
     <fragment
         android:id="@+id/addNewEmployeeFragment"
-        android:name="com.example.employees.AddNewEmployeeFragment"
+        android:name="com.example.employees.view.fragment.manager.AddNewEmployeeFragment"
         tools:layout="@layout/fragment_add_new_employee" >
         <action
             android:id="@+id/action_addNewEmployeeFragment_to_employeesFragment"
@@ -53,13 +59,36 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.employees.view.SettingFragment"
+        android:name="com.example.employees.view.fragment.SettingFragment"
         android:label="Setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/viewEmployeeFragment"
-        android:name="com.example.employees.ViewEmployeeFragment"
+        android:name="com.example.employees.view.fragment.manager.ViewEmployeeFragment"
         android:label="Employee Details "
-        tools:layout="@layout/fragment_view_employee" />
+        tools:layout="@layout/fragment_view_employee" >
+        <action
+            android:id="@+id/action_viewEmployeeFragment_to_addNewShiftFragment"
+            app:destination="@id/addNewShiftFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewShiftFragment"
+        tools:layout="@layout/fragment_add_new_shift"
+        android:name="com.example.employees.view.fragment.manager.AssignShiftFragment"
+        android:label="Assign Shift" >
+        <action
+            android:id="@+id/action_addNewShiftFragment_to_employeesFragment"
+            app:destination="@id/employeesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allShiftsFragment"
+        android:name="com.example.employees.view.fragment.manager.AllShiftsFragment"
+        android:label="All Shifts"
+        tools:layout="@layout/fragment_all_shifts" />
+    <fragment
+        android:id="@+id/allWardsFragment"
+        android:name="com.example.employees.view.fragment.manager.AllWardsFragment"
+        android:label="All Wards"
+        tools:layout="@layout/fragment_all_wards" />
 
 </navigation>

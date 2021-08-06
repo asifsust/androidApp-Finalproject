@@ -38,7 +38,16 @@ public class EmployeeData implements Serializable
     @SerializedName("joining_date")
     @Expose
     private String joiningDate;
-    private final static long serialVersionUID = 7788433710829683843L;
+
+    private int serialId;
+
+    public int getSerialId() {
+        return serialId;
+    }
+
+    public void setSerialId(int serialId) {
+        this.serialId = serialId;
+    }
 
     public Integer getId() {
         return id;

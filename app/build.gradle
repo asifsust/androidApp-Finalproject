@@ -64,4 +64,16 @@ dependencies {
     //universal image loader
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+    def lottieVersion = "3.4.4"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //expandable layout
+    implementation "com.github.skydoves:expandablelayout:1.0.7"
+
+    //swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 }

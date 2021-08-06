@@ -7,9 +7,26 @@ import java.io.Serializable;
 
 public class RegResponse{
 
+    @SerializedName("employee")
+    @Expose
     private Employee employee;
+    @SerializedName("user")
+    @Expose
     private User user;
+    @SerializedName("token")
+    @Expose
     private String token;
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Employee getEmployee() {
         return employee;

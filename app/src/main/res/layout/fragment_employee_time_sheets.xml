@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.EmployeeTimeSheetsFragment">
+    tools:context=".view.fragment.employee.EmployeeTimeSheetsFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
-        <include layout="@layout/row_timesheets"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEmployeeSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</ScrollView>
+
+
+</LinearLayout>

@@ -6,39 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.EmployeeProfileFragment">
-
-  <!--  <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <ImageView
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_icon_back"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ImageView
-            android:layout_marginEnd="16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_tick"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="@string/profile"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/montserrat_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>-->
+    tools:context=".view.fragment.employee.EmployeeProfileFragment">
 
     <RelativeLayout
         android:layout_marginTop="16dp"
@@ -47,6 +15,7 @@
         android:layout_height="120dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageProfile"
             android:scaleType="centerCrop"
             app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="2dp"
@@ -93,6 +62,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textUserId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -117,10 +87,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="Noman Ali Khan"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 
@@ -141,10 +112,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textDateOfBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="null"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 
@@ -165,10 +137,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textHireDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="null"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 
@@ -189,10 +162,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="@string/RGN"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 
@@ -213,10 +187,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="example@gmail.com"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 
@@ -237,10 +212,11 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/textMobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="0444-HR-123"
+                android:text="01612345678"
                 android:textColor="@color/profile_text_color"
                 android:textSize="16sp" />
 

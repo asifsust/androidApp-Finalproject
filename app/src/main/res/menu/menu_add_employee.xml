@@ -2,9 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/add_employee"
-        android:icon="@drawable/ic_icon_add_employee"
+    <item android:id="@+id/menu_add_employee"
         app:showAsAction="always"
-        android:title="add_employee" />
+        android:icon="@drawable/ic_icon_add_employee"
+        android:title="Add Employee" />
+
+    <item android:id="@+id/menu_add_shift"
+        app:showAsAction="always"
+        android:icon="@drawable/add_shift_icon"
+        android:title="Add Shift" />
+
+    <item android:id="@+id/menu_add_ward"
+        app:showAsAction="always"
+        android:icon="@drawable/add_shift_icon"
+        android:title="Add Shift" />
+
+    <item
+        android:id="@+id/menu_all_shift"
+        android:title="Shifts" />
+
+    <item android:id="@+id/menu_all_ward"
+        android:title="Wards" />
 
 </menu>

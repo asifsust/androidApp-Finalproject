@@ -27,70 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"/>
 
-        <!--<RelativeLayout
-            android:id="@+id/toolbarLayout"
-            android:background="@drawable/ic_home_manager_toolbar"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageMenu"
-                android:tag="menu"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="25dp"
-                android:src="@drawable/ic_icon_menu"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tint="@color/white" />
-
-
-            <LinearLayout
-                android:paddingTop="16dp"
-                android:paddingBottom="25dp"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_home_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:tint="@color/white" />
-
-                <TextView
-                    android:id="@+id/textManagerToolbarTitle"
-                    android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
-                    android:text="@string/employees"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/imageAddNewEmp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="25dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_icon_add_document"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tint="@color/white" />
-
-        </RelativeLayout>-->
-
         <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_below="@+id/viewBelowToolbar"
@@ -131,7 +67,11 @@
         android:layout_width="@dimen/_230sdp"
         android:layout_height="match_parent">
 
-        <include layout="@layout/drawer_layout"/>
+        <include
+            android:id="@+id/drawer"
+            layout="@layout/drawer_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

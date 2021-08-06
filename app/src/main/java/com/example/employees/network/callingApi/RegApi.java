@@ -1,7 +1,6 @@
 package com.example.employees.network.callingApi;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,22 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 
 import com.example.employees.R;
-import com.example.employees.app.AppController;
 import com.example.employees.model.RegResponse;
 import com.example.employees.network.RetrofitClient;
+import com.example.employees.others.CustomLoadingDialog;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Multipart;
 
 public class RegApi {
     private static final String TAG = "reg_api";
@@ -40,6 +36,7 @@ public class RegApi {
     private final RequestBody role_id;
     private final Context context;
     private final NavController navController;
+    private final CustomLoadingDialog loadingDialog;
 
     public RegApi(RequestBody name, RequestBody mobile, RequestBody email, RequestBody password, RequestBody password_confirmation, MultipartBody.Part image,RequestBody date_of_birth, RequestBody joining_date, RequestBody user_id, RequestBody role_id, Context context,NavController navController) {
         this.name = name;
@@ -54,6 +51,7 @@ public class RegApi {
         this.role_id = role_id;
         this.context = context;
         this.navController = navController;
+        loadingDialog = new CustomLoadingDialog(context);
 
     }
 
@@ -61,6 +59,7 @@ public class RegApi {
 
         Log.d(TAG, "registerEmployee: name: "+bodyToString(name));
         Log.d(TAG, "registerEmployee: mobile: "+bodyToString(mobile));
+        loadingDialog.start();
 
         if (image == null)
             Log.d(TAG, "registerEmployee: image: null");
@@ -94,15 +93,20 @@ public class RegApi {
         call.enqueue(new Callback<RegResponse>() {
             @Override
             public void onResponse(@NonNull Call<RegResponse> call, @NonNull Response<RegResponse> response) {
+                loadingDialog.dismiss();
                 if (response.isSuccessful()){
+                    Log.d(TAG, "onResponse: response found");
+                    if (Objects.requireNonNull(response.body()).getMessage() != null){
+                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     Toast.makeText(context, "Employee added successfully", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onResponse: Successfully register");
-                    Log.d(TAG, "onResponse: image: "+Objects.requireNonNull(response.body()).getEmployee().getImage());
-                    Log.d(TAG, "onResponse: name: "+ Objects.requireNonNull(response.body()).getUser().getName());
-                    Log.d(TAG, "onResponse: emp_user_id: "+ Objects.requireNonNull(response.body()).getEmployee().getUserId());
+
                     navController.navigate(R.id.action_addNewEmployeeFragment_to_employeesFragment);
 
                 }else {
+                    Log.d(TAG, "onResponse: not successful");
                     Toast.makeText(context, "Something went wrong, please try again", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -110,15 +114,15 @@ public class RegApi {
             @Override
             public void onFailure(@NonNull Call<RegResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "onFailure: response_failure: "+t.getMessage());
+                loadingDialog.dismiss();
             }
         });
     }
 
     private static String bodyToString(final RequestBody request){
         try {
-            final RequestBody copy = request;
             final Buffer buffer = new Buffer();
-            copy.writeTo(buffer);
+            request.writeTo(buffer);
             return buffer.readUtf8();
         }
         catch (final IOException e) {

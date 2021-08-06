@@ -57,17 +57,12 @@ public class FileUtil {
     private static String getFileName(Context context, Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
-            Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
-            try {
+            try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
             }
         }
         if (result == null) {
@@ -93,14 +88,11 @@ public class FileUtil {
         return newFile;
     }
 
-    private static long copy(InputStream input, FileOutputStream output) throws IOException {
-        long count = 0;
+    private static void copy(InputStream input, FileOutputStream output) throws IOException {
         int n;
         byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
         while (EOF != (n = input.read(buffer))) {
             output.write(buffer, 0, n);
-            count += n;
         }
-        return count;
     }
 }

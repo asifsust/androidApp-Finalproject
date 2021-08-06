@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textDate"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:background="@drawable/rounded_solid_rectangle"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:text="December 16, 2021"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/recyclerViewAssignShifts"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

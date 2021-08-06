@@ -2,6 +2,9 @@
 <androidx.cardview.widget.CardView
     app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@color/emp_toolbar_color"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,56 +24,6 @@
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Early"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_alignParentEnd="true"
-                    android:layout_gravity="end"
-                    android:text="7:00 - 15:00"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Ward 1"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_alignParentEnd="true"
-                    android:text="RGN"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
 
             <View
                 android:background="#707070"
@@ -109,6 +62,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/textRest"
                     android:layout_alignParentEnd="true"
                     android:text="30 min"
                     android:textColor="@color/black"
@@ -133,6 +87,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/textWorkTime"
                     android:layout_alignParentEnd="true"
                     android:text="7h 30min"
                     android:textColor="@color/black"
@@ -144,6 +99,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -157,6 +113,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/textWorkUnit"
                     android:layout_alignParentEnd="true"
                     android:text="Rose Ward"
                     android:textColor="@color/black"
@@ -168,7 +125,7 @@
             </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/acbBookBank"
+                android:id="@+id/buttonBookBank"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingStart="32dp"

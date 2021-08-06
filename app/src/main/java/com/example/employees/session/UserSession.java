@@ -3,7 +3,14 @@ package com.example.employees.session;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.employees.model.login.Employee;
+import com.example.employees.model.login.User;
+import com.google.gson.Gson;
+
+
 public class UserSession {
+    private static final String USER_DATA = "user_data";
+    private static final String EMPLOYEE_DATA = "employee_data";
     public SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
     public String SHARED_PREFERENCE_NAME = "USER_SESSION";
@@ -13,10 +20,9 @@ public class UserSession {
     public String TOKEN = "token";
     public String ADMIN_EMAIL = "admin_email";
     public String ADMIN_PASS = "admin_pass";
-    public Context context;
+    public String IMAGE_URI = "image_uri";
 
     public UserSession(Context context) {
-        this.context = context;
         sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME,Context.MODE_PRIVATE);
     }
 
@@ -79,5 +85,39 @@ public class UserSession {
 
     public String getAdminPass(){
         return sharedPreferences.getString(ADMIN_PASS,"");
+    }
+
+    public void setEmployeeDataUser(User user){
+        editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString(USER_DATA,json);
+        editor.apply();
+    }
+
+    public String getEmployeeDataUser(){
+        return sharedPreferences.getString(USER_DATA,"");
+    }
+
+    public void setEmployeeDataEmp(Employee emp){
+        editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(emp);
+        editor.putString(EMPLOYEE_DATA,json);
+        editor.apply();
+    }
+
+    public void saveLocalImage(String uri){
+        editor = sharedPreferences.edit();
+        editor.putString(IMAGE_URI,uri);
+        editor.apply();
+    }
+
+    public String getLocalImage(){
+        return sharedPreferences.getString(IMAGE_URI,"");
+    }
+
+    public String getEmployeeDataEmp(){
+        return sharedPreferences.getString(EMPLOYEE_DATA,"");
     }
 }

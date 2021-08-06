@@ -12,6 +12,7 @@ import com.example.employees.model.employeeUpdate.Employee;
 import com.example.employees.model.employeeUpdate.EmployeeUpdateResponse;
 import com.example.employees.model.employeeUpdate.User;
 import com.example.employees.network.RetrofitClient;
+import com.example.employees.others.CustomLoadingDialog;
 import com.example.employees.session.UserSession;
 
 import java.io.IOException;
@@ -32,8 +33,6 @@ public class UpdateEmployeeApi {
     private final RequestBody name;
     private final RequestBody mobile;
     private final RequestBody email;
-    private final RequestBody password;
-    private final RequestBody password_confirmation;
     private final MultipartBody.Part image;
     private final RequestBody date_of_birth;
     private final RequestBody joining_date;
@@ -44,13 +43,13 @@ public class UpdateEmployeeApi {
     private final String id;
     private final String employee_id;
 
-    public UpdateEmployeeApi(Context context, RequestBody name, RequestBody mobile, RequestBody email, RequestBody password, RequestBody password_confirmation, MultipartBody.Part image, RequestBody date_of_birth, RequestBody joining_date, RequestBody user_id, RequestBody role_id, NavController navController, String id, String employee_id) {
+    private final CustomLoadingDialog loadingDialog;
+
+    public UpdateEmployeeApi(Context context, RequestBody name, RequestBody mobile, RequestBody email, MultipartBody.Part image, RequestBody date_of_birth, RequestBody joining_date, RequestBody user_id, RequestBody role_id, NavController navController, String id, String employee_id) {
         this.context = context;
         this.name = name;
         this.mobile = mobile;
         this.email = email;
-        this.password = password;
-        this.password_confirmation = password_confirmation;
         this.image = image;
         this.date_of_birth = date_of_birth;
         this.joining_date = joining_date;
@@ -60,9 +59,11 @@ public class UpdateEmployeeApi {
         this.id = id;
         this.employee_id = employee_id;
         userSession = new UserSession(context);
+        loadingDialog = new CustomLoadingDialog(context);
     }
 
     public void updateEmployee(){
+        loadingDialog.start();
         String url = "/api/user/"+id+"/employee/"+employee_id;
         Call<EmployeeUpdateResponse> call;
         if (image != null){
@@ -75,8 +76,6 @@ public class UpdateEmployeeApi {
                             name,
                             mobile,
                             email,
-                            password,
-                            password_confirmation,
                             date_of_birth,
                             joining_date,
                             user_id,
@@ -94,8 +93,6 @@ public class UpdateEmployeeApi {
                             bodyToString(name),
                             bodyToString(mobile),
                             bodyToString(email),
-                            bodyToString(password),
-                            bodyToString(password_confirmation),
                             bodyToString(date_of_birth),
                             bodyToString(joining_date),
                             bodyToString(user_id),
@@ -107,14 +104,10 @@ public class UpdateEmployeeApi {
         call.enqueue(new Callback<EmployeeUpdateResponse>() {
             @Override
             public void onResponse(@NonNull Call<EmployeeUpdateResponse> call, @NonNull Response<EmployeeUpdateResponse> response) {
+                loadingDialog.dismiss();
                 if (response.isSuccessful()){
                     Toast.makeText(context, "Successfully Employee Updated", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onResponse: success");
-                    EmployeeUpdateResponse res = response.body();
-                    User user = Objects.requireNonNull(res).getUser();
-                    Employee employee = Objects.requireNonNull(res).getEmployee();
-                    Log.d(TAG, "onResponse: name: "+user.getName());
-                    Log.d(TAG, "onResponse: image: "+employee.getImage());
 
                     navController.navigate(R.id.action_addNewEmployeeFragment_to_employeesFragmentForUpdateEmployee);
                 }else {
@@ -125,15 +118,16 @@ public class UpdateEmployeeApi {
             @Override
             public void onFailure(@NonNull Call<EmployeeUpdateResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "onFailure: response failure: "+t.getMessage());
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                loadingDialog.dismiss();
             }
         });
     }
 
     private static String bodyToString(final RequestBody request){
         try {
-            final RequestBody copy = request;
             final Buffer buffer = new Buffer();
-            copy.writeTo(buffer);
+            request.writeTo(buffer);
             return buffer.readUtf8();
         }
         catch (final IOException e) {

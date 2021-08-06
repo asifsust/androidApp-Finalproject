@@ -23,7 +23,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:background="@color/white"
@@ -69,13 +69,17 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:orientation="vertical"
                         android:layout_marginTop="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioGroup
-                            android:checkedButton="@id/radioButtonEmployee"
+                            android:id="@+id/radioGroup"
+                            android:visibility="visible"
+                            android:checkedButton="@={loginViewModel.radio_checked}"
                             android:weightSum="2"
                             android:layout_marginBottom="32dp"
                             android:orientation="horizontal"

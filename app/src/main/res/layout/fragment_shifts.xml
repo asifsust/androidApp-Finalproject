@@ -1,65 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShiftsFragment"
+    tools:context=".view.fragment.manager.ShiftsFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:padding="16dp"
-        android:orientation="vertical"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginBottom="20dp"
-            android:elevation="16dp"
-            android:background="@drawable/rounded_solid_rectangle"
-            android:backgroundTint="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:text="November 14, 2021"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewShift"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <include layout="@layout/row_shifts"/>
-        <include layout="@layout/row_shifts"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:elevation="16dp"
-            android:background="@drawable/rounded_solid_rectangle"
-            android:backgroundTint="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:text="November 14, 2021"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-        <include layout="@layout/row_shifts"/>
-        <include layout="@layout/row_shifts"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:elevation="16dp"
-            android:background="@drawable/rounded_solid_rectangle"
-            android:backgroundTint="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:text="November 14, 2021"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <include layout="@layout/row_shifts"/>
-        <include layout="@layout/row_shifts"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

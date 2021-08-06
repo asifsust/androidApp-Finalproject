@@ -5,41 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewShiftFragment">
+    tools:context=".view.fragment.manager.AssignShiftFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/edtName"
-            android:layout_marginTop="16dp"
+        <Spinner
+            android:id="@+id/spinnerShift"
             android:layout_marginBottom="16dp"
-            android:maxLines="2"
-            android:inputType="text|textMultiLine"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:hint="@string/name"
-            android:background="@drawable/back_employee_details"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:background="@drawable/back_add_new_employee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp"/>
 
-        <EditText
-            android:id="@+id/edtRole"
+        <Spinner
+            android:id="@+id/spinnerWard"
             android:layout_marginBottom="16dp"
-            android:maxLines="2"
-            android:inputType="text|textMultiLine"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:hint="@string/role"
-            android:background="@drawable/back_employee_details"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:background="@drawable/back_add_new_employee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSelectDate"
@@ -49,44 +42,15 @@
             android:textAlignment="center"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Select Date"
-            android:background="@drawable/rounded_solid_rectangle"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/back_add_new_employee"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="60dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonSelectTime"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"
-            android:textAllCaps="false"
-            android:textAlignment="center"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:text="Select Time"
-            android:background="@drawable/rounded_solid_rectangle"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:layout_marginBottom="16dp"
-            android:maxLines="2"
-            android:inputType="text|textMultiLine"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:hint="@string/user_id"
-            android:background="@drawable/back_employee_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonConfirmShift"
             android:layout_marginTop="32dp"
             android:textSize="16sp"
             android:textAllCaps="false"
@@ -100,7 +64,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
 
     </LinearLayout>
 

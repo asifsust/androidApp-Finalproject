@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddNewEmployeeFragment">
+    tools:context=".view.fragment.manager.AddNewEmployeeFragment">
 
     <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -114,6 +116,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutPasswordField"
             android:padding="16dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -185,6 +188,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutConfirmPasswordField"
             android:orientation="vertical"
             android:padding="16dp"
             android:layout_width="match_parent"
@@ -485,6 +489,7 @@
                     android:textColor="@color/black"
                     android:inputType="phone|textMultiLine"
                     android:maxLines="2"
+                    android:maxLength="11"
                     android:hint="1589654"
                     android:padding="16dp"
                     android:background="@drawable/back_add_new_employee"

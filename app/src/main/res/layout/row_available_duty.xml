@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.skydoves.expandablelayout.ExpandableLayout
+            android:id="@+id/expandable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expandable_duration="300"
+            app:expandable_isExpanded="false"
+            app:expandable_parentLayout="@layout/before_expand"
+            app:expandable_secondLayout="@layout/row_book_bank_duty"
+            app:expandable_showSpinner="false"
+            />
+
+</LinearLayout>
+<!--<androidx.cardview.widget.CardView
+    android:id="@+id/cardView"
     app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@color/emp_toolbar_color"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,9 +34,9 @@
 
     <LinearLayout
         android:background="@color/emp_toolbar_color"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
@@ -28,7 +51,8 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="Early"
+                    android:text="Morning"
+                    android:id="@+id/textShiftName"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="16sp"
@@ -36,9 +60,10 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:text="6:00 AM-12:00 PM"
+                    android:id="@+id/textTime"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:text="7:00 - 15:00"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="16sp"
@@ -54,6 +79,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:visibility="gone"
                     android:text="Ward 1"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
@@ -62,8 +88,9 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:text="@string/RGN"
+                    android:id="@+id/textRole"
                     android:layout_alignParentEnd="true"
-                    android:text="RGN"
                     android:textColor="@color/black"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="16sp"
@@ -74,7 +101,157 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/imageExpand"
+            android:background="@drawable/ic_arrow_down"
+            android:backgroundTint="@color/colorPrimary"
+            android:tag="collapsed"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/expandableLayout"
+            android:visibility="gone"
+            android:background="@color/emp_toolbar_color"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:background="#707070"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <RelativeLayout
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:text="Duty Information"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/rest"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/textRest"
+                        android:layout_alignParentEnd="true"
+                        android:text="30 min"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/work_time"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/textWorkTime"
+                        android:layout_alignParentEnd="true"
+                        android:text="7h 30min"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Work Unit"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/textWorkUnit"
+                        android:layout_alignParentEnd="true"
+                        android:text="Rose Ward"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonBookBank"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Book Bank"
+                    android:background="@drawable/rounded_solid_rectangle"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>-->
+
+
+
+
 

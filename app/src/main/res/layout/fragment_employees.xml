@@ -5,35 +5,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EmployeesFragment">
+    tools:context=".view.fragment.manager.EmployeesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvEmployees"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEmployees"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
 
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-            <include layout="@layout/row_employess"/>
-
-        </LinearLayout>
-
-    </ScrollView>-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

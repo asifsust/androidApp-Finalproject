@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".ManagerProfileFragment">
+        tools:context=".view.fragment.manager.ManagerProfileFragment">
 
         <RelativeLayout
             android:layout_marginTop="16dp"
@@ -19,6 +19,7 @@
             android:layout_height="120dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageMangerProfile"
                 android:scaleType="centerCrop"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="2dp"
@@ -28,6 +29,17 @@
                 android:layout_height="wrap_content"/>
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textChangeImage"
+            android:padding="6dp"
+            android:text="Change Image"
+            android:background="?attr/selectableItemBackground"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +67,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textUserId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -79,6 +92,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -103,6 +117,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textDateOfBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -113,6 +128,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp"
                 android:layout_width="match_parent"
@@ -151,6 +167,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textRole"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -175,6 +192,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -199,6 +217,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textMobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -211,6 +230,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonChangePass"
             android:layout_margin="32dp"
             android:layout_marginBottom="20dp"
             android:elevation="16dp"

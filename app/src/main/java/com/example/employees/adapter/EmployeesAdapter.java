@@ -5,8 +5,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -19,6 +19,7 @@ import com.example.employees.databinding.ConfirmRemoveEmpDialogBinding;
 import com.example.employees.databinding.RemoveEmployeDialogBinding;
 import com.example.employees.databinding.RowEmployessBinding;
 import com.example.employees.model.employees.EmployeeData;
+import com.example.employees.my_interface.SimpleCallBack;
 import com.example.employees.network.callingApi.RemoveEmployeeApi;
 import com.example.employees.session.UserSession;
 
@@ -26,15 +27,18 @@ import java.util.ArrayList;
 
 public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<EmployeeData> list;
-    private NavController navController;
+    private final String TAG = this.getClass().getName();
+    private final Context context;
+    private final ArrayList<EmployeeData> list;
+    private final NavController navController;
     private UserSession userSession;
+    private final SimpleCallBack simpleCallBack;
 
-    public EmployeesAdapter(Context context, ArrayList<EmployeeData> list, NavController navController) {
+    public EmployeesAdapter(Context context, ArrayList<EmployeeData> list, NavController navController, SimpleCallBack simpleCallBack) {
         this.context = context;
         this.list = list;
         this.navController = navController;
+        this.simpleCallBack = simpleCallBack;
     }
 
     @NonNull
@@ -50,35 +54,21 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         holder.binding.textName.setText(data.getName());
         holder.binding.textRole.setText(data.getRole());
         holder.binding.textUserId.setText(String.valueOf(data.getUserId()));
-        holder.binding.textSerial.setText(String.valueOf(data.getEmployeeId()));
+        holder.binding.textSerial.setText(String.valueOf(data.getSerialId()));
 
-        holder.binding.textViewEmployee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(context, "view", Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("object",data);
-                navController.navigate(R.id.action_employeesFragment_to_viewEmployeeFragment,bundle);
-            }
+        holder.binding.textViewEmployee.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("object",data);
+            navController.navigate(R.id.action_employeesFragment_to_viewEmployeeFragment,bundle);
         });
 
-        holder.binding.textEditEmployee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(context, "edit", Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("object",data);
-                navController.navigate(R.id.action_employeesFragment_to_addNewEmployeeFragmentForUpdate,bundle);
-            }
+        holder.binding.textEditEmployee.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("object",data);
+            navController.navigate(R.id.action_employeesFragment_to_addNewEmployeeFragmentForUpdate,bundle);
         });
 
-        holder.binding.textRemoveEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(context, "remove", Toast.LENGTH_SHORT).show();
-                showEmpRemoveDialog(data);
-            }
-        });
+        holder.binding.textRemoveEmp.setOnClickListener(v -> showEmpRemoveDialog(data));
     }
 
     private void showEmpRemoveDialog(EmployeeData data) {
@@ -94,12 +84,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         binding.textUserId.setText(String.valueOf(data.getUserId()));
         binding.textRole.setText(data.getRole());
 
-        binding.buttonRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showConfirmRemoveDialog(data.getId(),dialog);
-            }
-        });
+        binding.buttonRemove.setOnClickListener(v -> showConfirmRemoveDialog(data.getId(),dialog));
 
         dialog.show();
     }
@@ -118,7 +103,7 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
 
             String password = binding.edtPassword.getText().toString();
             if (password.equals(userSession.getAdminPass())){
-                RemoveEmployeeApi removeEmployeeApi = new RemoveEmployeeApi(context,String.valueOf(id));
+                RemoveEmployeeApi removeEmployeeApi = new RemoveEmployeeApi(context,String.valueOf(id), simpleCallBack);
                 removeEmployeeApi.removeEmployee();
                 dialog.dismiss();
                 dialogRoot.dismiss();

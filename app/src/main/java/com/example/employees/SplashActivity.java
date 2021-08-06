@@ -22,12 +22,11 @@ public class SplashActivity extends AppCompatActivity {
         userSession = new UserSession(this);
 
         new Handler().postDelayed(() -> {
+            //login();
             if (!userSession.getLoginStatus()) login();
             else {
-//                login();
                 if (userSession.getRoleId() == 1) managerHome();
                 else employeeHome();
-               //managerHome();
             }
         }, 5000);
     }

@@ -15,7 +15,7 @@
     <string name="your_email">Your email</string>
     <string name="mary123_nhs_net">Mary123@NHS.net</string>
     <string name="submit">Submit</string>
-    <string name="please_check_email_for_password_reset_link">Please check email for password reset link</string>
+    <string name="please_check_email_for_verification_code">Please check email for verification code</string>
     <string name="new_password">New password</string>
     <string name="back">Back</string>
     <string name="hr_details">HR Details</string>
@@ -91,5 +91,24 @@ contain one uppercase letter, one symbol, and a number</string>
     <string name="your_password_must_be_greater_then_8_and_less_then_30">Your password must be 8 to 30 character</string>
     <string name="password_not_matched">Password not matched</string>
     <string name="select_role">Select Role</string>
+    <string name="select_shift">Select shift</string>
+    <string name="select_ward">Select Ward</string>
+    <string name="select_date">Select Date</string>
+    <string name="no_shift_for_today">No shift for Today</string>
+    <string name="enter_new_pass">Enter new password</string>
+    <string name="enter_confirm_pass">Enter confirm password</string>
+    <string name="current_pass_not_found">Current password Not found</string>
+    <string name="manager_employee">Select Manager or Employee</string>
+    <string name="invalid_for_manager">Invalid Credential for manager</string>
+    <string name="invalid_for_employee">Invalid Credential for employee</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="enter_ward_name">Enter Ward name</string>
     <string name="update">Update</string>
+    <string name="ward">Ward</string>
+    <string name="about_the_app">About The App</string>
+    <string name="sample_text">Android Studio is the official integrated development environment for Google\'s Android operating system, built on JetBrains\' IntelliJ IDEA software and designed specifically for Android development.</string>
+    <string name="successfully_send">Successfully Send</string>
+    <string name="enter_email_address">Enter email address</string>
+    <string name="successfully_updated">Password successfully Updated!!</string>
 </resources>
