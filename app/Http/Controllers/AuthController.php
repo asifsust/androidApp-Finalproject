@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\UserResource;
+use App\Mail\SendMail;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -93,9 +98,13 @@ class AuthController extends Controller
         // create a token for an authentication
         $token = $user->createToken('myapptoken')->plainTextToken;
 
+        Mail::to($user->email)->send(
+            new SendMail(['email' => $request->email,'password' => $request->password ])
+        );
+
         $response = [
-            'user'      => $user,
-            'employee'  => $employee,
+            'user' => $user,
+            'employee' => $employee,
             'token'     => $token
         ];
 
@@ -135,7 +144,10 @@ class AuthController extends Controller
         ]);
 
         if ($request->filled('password')) {
-            $user->update(['password' => Hash::make($request->password)]);
+            $user->update([
+                'password'           => Hash::make($request->password),
+                'is_update_password' => 1,
+            ]);
         }
 
         // after that create an employee with user
@@ -155,8 +167,8 @@ class AuthController extends Controller
         }
 
         $response = [
-            'user'      => $user,
-            'employee'  => $employee,
+            'user' => $user,
+            'employee' => $employee,
         ];
 
         return response($response, 201);
@@ -191,7 +203,8 @@ class AuthController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [
-            'user' => $user,
+            'user' => new UserResource($user),
+            'employee' => $user->employee,
             'token'=> $token
         ];
 
@@ -210,6 +223,7 @@ class AuthController extends Controller
         // find a user
         $user = auth()->user();
         $user->password = Hash::make($fields['new_password']);
+        $user->is_update_password = 1;
 
         // save user
         $user->save();

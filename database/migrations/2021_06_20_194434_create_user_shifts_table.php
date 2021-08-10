@@ -16,6 +16,7 @@ class CreateUserShiftsTable extends Migration
         Schema::create('user_shifts', function (Blueprint $table) {
             $table->id();
             $table->text('description')->nullable();
+            $table->text('timeshift')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('ward_id')->constrained('wards');
             $table->foreignId('shift_id')->constrained('shifts');

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->default(1);
             $table->foreignId('role_id')->nullable()->constrained('roles');
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_update_password')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

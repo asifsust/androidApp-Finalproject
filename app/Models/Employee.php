@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\URL;
 class Employee extends Model
 {
     use HasFactory;
+    protected $table = 'employees';
     protected $guarded =[];
 
     protected $perPage = 20;

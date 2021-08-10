@@ -64,4 +64,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('get-all-assign-shift',[UserShiftController::class, 'getAllAssignShift'])->name('get-all-assign-shift');
     Route::post('edit-user-shift/{user_shift_id}',[UserShiftController::class, 'userShiftEdit'])->name('edit-user-shift');
     Route::post('delete-user-shift/{user_shift_id}',[UserShiftController::class, 'deleteUserShift'])->name('delete-user-shift');
+    Route::post('get-timesheet-data',[UserShiftController::class, 'getTimeSheetData'])->name('get-timesheet-data');
+    Route::post('view-employee-roaster',[UserShiftController::class, 'viewEmployeeRoaster'])->name('viewEmployeeRoaster');
 });

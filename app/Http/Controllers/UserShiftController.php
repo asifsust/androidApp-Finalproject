@@ -31,9 +31,12 @@ class UserShiftController extends Controller
             'date' => 'required'
         ]);
 
+        $timeshift = Carbon::parse($request->date)->addDays(1)->format('Y-m-d') . now()->format(' H:i:s');
+
         $userShiftAssign = UserShift::create([
             'user_id' => $fields['user_id'],
             'shift_id' => $fields['shift_id'],
+            'timeshift' => $timeshift,
             'description' => $request->description ? $request->description : null,
             'ward_id' => $fields['ward_id'],
             'date' => $fields['date'],
@@ -86,16 +89,16 @@ class UserShiftController extends Controller
 
 
         if ($request->filled('date')) {
-            $allAssignShift = UserShiftResource::collection(UserShift::with('user','shift','ward')->where('date', '=', date('Y-m-d', strtotime($request->date)))
-                ->orderBy('date','DESC')->paginate(10));
+            $allAssignShift = UserShiftResource::collection(UserShift::with('user', 'shift', 'ward')->where('date', '=', date('Y-m-d', strtotime($request->date)))
+                ->orderBy('date', 'DESC')->paginate(10));
         }
 
         $assignShifts = [];
         $counter = 1;
-        foreach($allAssignShift->groupBy('date') as $key => $assignShift) {
+        foreach ($allAssignShift->groupBy('date') as $key => $assignShift) {
             $assignShifts[] = [
                 'id' => $counter++,
-                'date'=> $key,
+                'date' => $key,
                 'assign_shift_info' => $assignShift
             ];
         }
@@ -144,21 +147,82 @@ class UserShiftController extends Controller
         ]);
     }
 
-    public function deleteUserShift($id) {
+    public function deleteUserShift($id)
+    {
 
         $userShift = UserShift::find($id);
 
+        $timeshift = now()->format('Y-m-d H:i:s');
+
+        $message = "User shift is not found!";
         if ($userShift) {
-            $userShift->delete();
-            return response()->json([
-                'message' => 'User shift is successfully deleted'
-            ]);
+            $userTimeShift = UserShift::where('timeshift', '<', $timeshift)->where('id', $id)->count();
+
+            if ($userTimeShift > 0) {
+                $message = "Shift is already sent to timesheet";
+            } else {
+                $userShift->delete();
+                $message = 'User shift is successfully deleted';
+            }
+
         }
 
-        return  response()->json([
-            'message' => 'User shift is not deleted'
+        return response()->json([
+            'message' => $message
         ]);
 
     }
 
+    public function getTimeSheetData(Request $request)
+    {
+        $carbon = Carbon::parse($request->date ?? now());
+        $date = $carbon->format('Y-m-d');
+
+        $from_date = $request->from_date ?? Carbon::parse($date)->subDays(5)->format('Y-m-d');
+        $timeshift = $date . $carbon->format(' H:i:s');
+
+        $timeSheets = UserShift::where('timeshift', '<=', $timeshift)
+            ->where('date', ">=", $from_date)
+            ->when($request->filled('user_id'), function ($q) use ($request) {
+                $q->where('user_id', $request->user_id ?? auth()->id());
+            })
+            ->get();
+
+        if ($timeSheets->isNotEmpty()) {
+            return response()->json([
+                'message' => "Success",
+                'timesheets' => UserShiftResource::collection($timeSheets)
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Empty',
+            'timesheets' => UserShiftResource::collection($timeSheets)
+        ]);
+    }
+
+    public function viewEmployeeRoaster(Request $request)
+    {
+        $carbon = Carbon::parse($request->date ?? now());
+        $date = $carbon->format('Y-m-d');
+
+        $from_date = $request->from_date ?? Carbon::parse($date)->subDays(5)->format('Y-m-d');
+        $to_date = $request->to_date ?? Carbon::parse($date)->addDays(5)->format('Y-m-d');
+
+        $roasters = UserShift::where('date', '>=', $from_date)
+            ->where('date', "<=", $to_date)
+            ->get();
+
+        if ($roasters->isNotEmpty()) {
+            return response()->json([
+                'message' => "Success",
+                'roasters' => UserShiftResource::collection($roasters)
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Empty',
+            'roasters' => UserShiftResource::collection($roasters)
+        ]);
+    }
 }

@@ -10,18 +10,19 @@ class UserResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
     {
         return [
-            'id'            =>  $this->id,
-            'user_id'       => $this->user_id,
-            'name'          =>  $this->name,
-            'mobile'        => $this->mobile,
-            'email'         => $this->email,
-            'role'          => $this->role->name ?? 'employee'
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'name' => $this->name,
+            'mobile' => $this->mobile,
+            'is_update_password' => $this->is_update_password,
+            'email' => $this->email,
+            'role' => $this->role->name ?? 'employee',
         ];
     }
 }
