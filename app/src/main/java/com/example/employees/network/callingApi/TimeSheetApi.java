@@ -61,7 +61,8 @@ public class TimeSheetApi {
                         adapter = new TimeSheetAdapter(context, Objects.requireNonNull(response.body()).getTimesheets());
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-                    }else Toast.makeText(context, "No Timesheet found", Toast.LENGTH_SHORT).show();
+                   }
+                          else Toast.makeText(context, "No Timesheet found", Toast.LENGTH_SHORT).show();
 
                 }else {
                     Log.d(TAG, "onResponse: something went wrong");

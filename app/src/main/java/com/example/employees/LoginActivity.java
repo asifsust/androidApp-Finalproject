@@ -1,11 +1,11 @@
 package com.example.employees;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.example.employees.databinding.ActivityLoginBinding;
 import com.example.employees.model.User;

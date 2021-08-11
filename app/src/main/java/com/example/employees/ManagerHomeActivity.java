@@ -193,18 +193,18 @@ public class ManagerHomeActivity extends AppCompatActivity implements View.OnCli
             navController.navigate(R.id.action_employeesFragment_to_addNewEmployeeFragment);
             return true;
         }
-        if (item.getItemId() == R.id.menu_all_shift){
-            navController.navigate(R.id.action_employeesFragment_to_allShiftsFragment);
-            return true;
-        }
+//        if (item.getItemId() == R.id.menu_all_shift){
+//            navController.navigate(R.id.action_employeesFragment_to_allShiftsFragment);
+//            return true;
+//        }
         if (item.getItemId() == R.id.menu_all_ward){
             navController.navigate(R.id.action_employeesFragment_to_allWardsFragment);
             return true;
         }
-        if (item.getItemId() == R.id.menu_add_shift){
-            showAddShiftDialog();
-            return true;
-        }
+//        if (item.getItemId() == R.id.menu_add_shift){
+//            showAddShiftDialog();
+//            return true;
+//        }
         if (item.getItemId() == R.id.menu_add_ward){
             showAddWardDialog();
             return true;

@@ -64,7 +64,7 @@ public class LoginApi {
                     if (loginResponse.getEmployee() == null
                             || (loginResponse.getEmployee() != null
                             && loginResponse.getEmployee().getStatus() != 1)){
-                        Toast.makeText(context, "Sorry your account has been deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "User not registered!", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

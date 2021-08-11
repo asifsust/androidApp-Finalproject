@@ -150,22 +150,22 @@ public class GlobalMethods {
     public static void showAddMenu(boolean showMenu){
         if (ManagerHomeActivity.menu != null){
             MenuItem item1 = ManagerHomeActivity.menu.findItem(R.id.menu_add_employee);
-            MenuItem item2 = ManagerHomeActivity.menu.findItem(R.id.menu_all_shift);
+            //MenuItem item2 = ManagerHomeActivity.menu.findItem(R.id.menu_all_shift);
             MenuItem item3 = ManagerHomeActivity.menu.findItem(R.id.menu_all_ward);
-            MenuItem item4 = ManagerHomeActivity.menu.findItem(R.id.menu_add_shift);
+            //MenuItem item4 = ManagerHomeActivity.menu.findItem(R.id.menu_add_shift);
             MenuItem item = ManagerHomeActivity.menu.findItem(R.id.menu_add_ward);
             item1.setVisible(showMenu);
-            item2.setVisible(showMenu);
+            //item2.setVisible(showMenu);
             item3.setVisible(showMenu);
-            item4.setVisible(showMenu);
+            //item4.setVisible(showMenu);
             item.setVisible(showMenu);
         }
     }
 
     public static void showAddShift(boolean showAddShift){
         if (ManagerHomeActivity.menu != null){
-            MenuItem item1 = ManagerHomeActivity.menu.findItem(R.id.menu_add_shift);
-            item1.setVisible(showAddShift);
+            //MenuItem item1 = ManagerHomeActivity.menu.findItem(R.id.menu_add_shift);
+            //item1.setVisible(showAddShift);
         }
     }
 
@@ -262,18 +262,18 @@ public class GlobalMethods {
         return "Not found";
     }
 
-    public static boolean isValidTimeForShift(String initialTime, String finalTime,
+    public static boolean isValidTimeForShift(String shiftStartTime, String shiftEndTime,
                                               String currentTime) {
         String reg = "^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
-        if (initialTime.matches(reg) && finalTime.matches(reg) &&
+        if (shiftStartTime.matches(reg) && shiftEndTime.matches(reg) &&
                 currentTime.matches(reg))
         {
-            Date inTime=null,checkTime=null,finTime=null;
+            Date shiftStartFormattedTime=null,currentFormattedTime=null,shiftEndFormattedtime=null;
 
             try{
-                inTime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(initialTime);
-                checkTime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(currentTime);
-                finTime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(finalTime);
+                shiftStartFormattedTime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(shiftStartTime);
+                currentFormattedTime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(currentTime);
+                shiftEndFormattedtime = new SimpleDateFormat("HH:mm:ss",Locale.UK).parse(shiftEndTime);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -281,33 +281,35 @@ public class GlobalMethods {
             //Start Time
             //all times are from java.util.Date
             Calendar calendar1 = Calendar.getInstance();
-            assert inTime != null;
-            calendar1.setTime(inTime);
-            //Current Time
+            assert shiftStartFormattedTime != null;
+            calendar1.setTime(shiftStartFormattedTime);
 
+            //Current Time
             Calendar calendar3 = Calendar.getInstance();
-            assert checkTime != null;
-            calendar3.setTime(checkTime);
+            assert currentFormattedTime != null;
+            calendar3.setTime(currentFormattedTime);
 
             //End Time
             Calendar calendar2 = Calendar.getInstance();
-            assert finTime != null;
-            calendar2.setTime(finTime);
+            assert shiftEndFormattedtime != null;
+            calendar2.setTime(shiftEndFormattedtime);
 
 
             Date actualTime = calendar3.getTime();
 
-            if (checkTime.before(calendar1.getTime())){
+            if (currentFormattedTime.before(calendar1.getTime())) {
                 return true;
-            }else {
-                if (finalTime.compareTo(initialTime) < 0 && checkTime.after(calendar1.getTime())){
-                    return true;
-                }else {
-                    if (checkTime.before(calendar2.getTime())){
-                        return true;
-                    }
-                }
             }
+//            }else {
+//                if (shiftEndTime.compareTo(shiftStartTime) < 0 && currentFormattedTime.after(calendar1.getTime())){
+//                    return true;
+//                }
+//                else {
+//                    if (currentFormattedTime.before(calendar2.getTime())){
+//                        return true;
+//                    }
+//                }
+//            }
 
         }
 

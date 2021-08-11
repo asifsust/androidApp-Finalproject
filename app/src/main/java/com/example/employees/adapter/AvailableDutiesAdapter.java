@@ -83,8 +83,15 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         shiftNameTV.setText(model.getName());
         roleTV.setText("RGN");
         timeTV.setText(time);
-        restTV.setText("30");
-        workTimeTV.setText("5h 30min");
+        if (model.getName().toLowerCase().equals("night")) {
+            restTV.setText("1h");
+            workTimeTV.setText("11h");
+        }
+        else {
+            restTV.setText("30min");
+            workTimeTV.setText("7h 30min");
+        }
+
 
         bookBankBtn.setOnClickListener(v -> {
             debug(model);

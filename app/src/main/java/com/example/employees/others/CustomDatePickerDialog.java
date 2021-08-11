@@ -64,26 +64,11 @@ public class CustomDatePickerDialog extends DatePickerDialog{
                     cal.set(Calendar.YEAR, year);
                     cal.set(Calendar.MONTH, month);
                     cal.set(Calendar.DATE, day);
-                    if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
 
-                        if (mignorsunday) {
-                            cal.add(Calendar.DATE, 1);
-                            mYear = cal.get(Calendar.YEAR);
-                            mMonth = cal.get(Calendar.MONTH);
-                            mDate = cal.get(Calendar.DATE);
-                            mignorsunday = false;
-                        } else {
-                            mignorsunday = true;
-                            cal.add(Calendar.DATE, -1);
-                            mYear = cal.get(Calendar.YEAR);
-                            mMonth = cal.get(Calendar.MONTH);
-                            mDate = cal.get(Calendar.DATE);
-                        }
-                    } else {
-                        mYear = year;
-                        mMonth = month;
-                        mDate = day;
-                    }
+                    mYear = year;
+                    mMonth = month;
+                    mDate = day;
+
                     view.updateDate(mYear, mMonth, mDate);
                 }
                 setTitle("Select Birth Date");
