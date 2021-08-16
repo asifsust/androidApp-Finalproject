@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EmployeeResource;
 use App\Http\Resources\UserResource;
+use App\Mail\SendEmailVerificationCode;
 use App\Mail\SendMail;
 use App\Models\Employee;
 use App\Models\User;
@@ -126,7 +127,7 @@ class AuthController extends Controller
             'name'          =>  'required|string',
             'mobile'        =>  'required',
             'email'         =>  'required|string|unique:users,email,' . $user->id,
-            'password'      =>  'nullable|string|confirmed|min:6',
+            'password'      =>  'nullable|string|min:6',
             'image'         =>  'mimes:jpg,bmp,png|nullable',
             'date_of_birth' =>  'required',
             'joining_date'  =>  'required',
@@ -192,6 +193,13 @@ class AuthController extends Controller
         // check email
         $user = User::where('email', $request->email)->first();
 
+        //check user is exist or not
+        if (!$user || $user->status === 0) {
+            return response()->json([
+                'message' => "The User is deleted"
+            ]);
+        }
+
         // check password
         if(!$user || !Hash::check($request->password, $user->password)) {
             return response([
@@ -244,8 +252,10 @@ class AuthController extends Controller
             // user role
             $role = ucfirst($user->role->name);
 
-            $user->employee->delete();
-            $user->delete();
+            $user->employee->update(['status' => 0]);
+            $user->status = 0;
+            $user->save();
+
             return response()->json([
                 'message' => "$role is successfully deleted."
             ]);
@@ -254,5 +264,82 @@ class AuthController extends Controller
         return response()->json([
             'message' => "This user doesn't exist."
         ]);
+    }
+
+
+
+
+
+
+    // recover password
+    public function sendEmailVerificationCode(Request $request)
+    {
+	    $user_count = User::where('email', $request->email)
+		    ->where('status','!=',0)
+		    ->count();
+
+        if ($user_count < 1) {
+            return response()->json([
+                'message' => "Email Not Found!"
+            ]);
+        }
+
+        try {
+
+            Mail::to($request->email)->send(new SendEmailVerificationCode($verification_code = rand(100000, 999999)));
+
+
+
+            return response()->json([
+                'message' => "Successfully Send",
+                'code' => $verification_code
+            ]);
+        } catch (\Exception $ex) {
+
+            return response()->json([
+                'message' => "Some Issues Occurred, Please Try later " . $ex->getMessage()
+            ]);
+        }
+    }
+
+
+
+    public function recoverUserPassword(Request $request)
+    {
+        // validate request
+        $fields = $request->validate([
+            'email'                 => 'required|email',
+            'new_password'          => 'required|string',
+            'password_confirmation' => 'required|string|same:new_password'
+        ]);
+
+        // find a user
+	$user = User::where('email', $request->email)
+		->where('status', '!=',0)
+		->first();
+
+        if (!$user) {
+            $response = [
+                'message' => 'User Not Found By This Email'
+            ];
+
+            // return response
+            return response()->json($response);
+        }
+
+
+        $user->password = Hash::make($fields['new_password']);
+        $user->is_update_password = 1;
+
+        // save user
+        $user->save();
+
+        $response = [
+            'message' => 'Password successfully Updated!!',
+            'password' => $request->new_password
+        ];
+
+        // return response
+        return response()->json($response);
     }
 }

@@ -23,6 +23,10 @@ use App\Http\Controllers\EmployeeController;
 Route::post('register', [AuthController::class,'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+
+Route::post('send-email-verification-code', [AuthController::class, 'sendEmailVerificationCode'])->name('send-email_verification_code');
+Route::post('recover-user-password', [AuthController::class, 'recoverUserPassword'])->name('recover-user-password');
+
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
@@ -33,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     // logout from device
     Route::post('logout', [AuthController::class,'logout']);
+
+
 
     // change image
     Route::post('change-image',[EmployeeController::class,'changeEmployeeImage'])->name('users.employee.change-image');

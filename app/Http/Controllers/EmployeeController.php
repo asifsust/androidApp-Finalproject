@@ -34,6 +34,6 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        return EmployeeResource::collection(Employee::paginate());
+        return EmployeeResource::collection(Employee::where('status', 1)->paginate());
     }
 }

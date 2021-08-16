@@ -31,6 +31,23 @@ class UserShiftController extends Controller
             'date' => 'required'
         ]);
 
+        $shift = Shift::find($request->shift_id);
+
+        if(strtolower($shift->name) == "early") {
+            $nightShift = Shift::where('name', 'night')->first();
+            $nightShiftId = $nightShift->id;
+            $previousDate = Carbon::parse($request->date)->subDays(1)->format('Y-m-d');
+            $nightShiftCount = UserShift::where('user_id', $request->user_id)
+                ->where('shift_id', $nightShiftId)
+                ->where('date', $previousDate)
+                ->count();
+            if ($nightShiftCount > 0) {
+                return response()->json([
+                    'message' => "Sorry, you booked a shift yesterday night. So you can't book this morning."
+                ]);
+            }
+        }
+
         $timeshift = Carbon::parse($request->date)->addDays(1)->format('Y-m-d') . now()->format(' H:i:s');
 
         $userShiftAssign = UserShift::create([
@@ -85,12 +102,21 @@ class UserShiftController extends Controller
 
     public function getAllAssignShift(Request $request)
     {
-        $allAssignShift = UserShiftResource::collection(UserShift::orderBy('date', 'DESC')->get());
 
+        $allAssignShift = UserShiftResource::collection(UserShift::orderBy('date', 'DESC')
+            ->when($request->user_id, function ($q) use ($request) {
+                $q->where('user_id', $request->user_id);
+            })
+            ->get());
 
         if ($request->filled('date')) {
-            $allAssignShift = UserShiftResource::collection(UserShift::with('user', 'shift', 'ward')->where('date', '=', date('Y-m-d', strtotime($request->date)))
-                ->orderBy('date', 'DESC')->paginate(10));
+            $allAssignShift = UserShiftResource::collection(
+                UserShift::with('user', 'shift', 'ward')->where('date', '=', date('Y-m-d', strtotime($request->date)))
+                    ->when($request->user_id, function ($q) use ($request) {
+                        $q->where('user_id', $request->user_id);
+                    })
+                    ->orderBy('date', 'DESC')->paginate(10)
+            );
         }
 
         $assignShifts = [];
