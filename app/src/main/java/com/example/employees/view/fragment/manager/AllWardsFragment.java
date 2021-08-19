@@ -31,6 +31,13 @@ public class AllWardsFragment extends Fragment {
     private AllWardsAdapter adapter;
     private CustomLoadingDialog loadingDialog;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +45,11 @@ public class AllWardsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -46,6 +58,9 @@ public class AllWardsFragment extends Fragment {
         binding.refreshLayout.setOnRefreshListener(this::getData);
     }
 
+    /**
+     *
+     */
     private void getData() {
         binding.refreshLayout.setRefreshing(false);
         loadingDialog.start();
@@ -55,6 +70,10 @@ public class AllWardsFragment extends Fragment {
 
             }
 
+            /**
+             *
+             * @param wardList
+             */
             @Override
             public void getWardCallBack(ArrayList<GetWardsResponse> wardList) {
                 loadingDialog.dismiss();
@@ -73,6 +92,9 @@ public class AllWardsFragment extends Fragment {
         api.getWard();
     }
 
+    /**
+     *
+     */
     private void init() {
         GlobalMethods.showAddMenu(false);
         GlobalMethods.showAddWard(true);

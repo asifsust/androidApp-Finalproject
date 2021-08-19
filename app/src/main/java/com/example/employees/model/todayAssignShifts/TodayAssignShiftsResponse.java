@@ -16,14 +16,26 @@ public class TodayAssignShiftsResponse implements Serializable
     @Expose
     private String message;
 
+    /**
+     *
+     * @return
+     */
     public List<TodayAssignShift> getTodayAssignShifts() {
         return todayAssignShifts;
     }
 
+    /**
+     *
+     * @param todayAssignShifts
+     */
     public void setTodayAssignShifts(List<TodayAssignShift> todayAssignShifts) {
         this.todayAssignShifts = todayAssignShifts;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMessage() {
         return message;
     }

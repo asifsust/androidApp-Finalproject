@@ -55,7 +55,7 @@ public class AvailableBankDutiesFragment extends Fragment {
             @Override
             public void getShiftCallBack(ArrayList<GetShiftsResponse> shiftList) {
                 if (shiftList.size() != 0){
-                    for (int i=0;i<5;i++){
+                    for (int i=0;i<7;i++){
                         AvailableBankDutiesModel model = new AvailableBankDutiesModel();
                         model.setDate(GlobalMethods.getNextDate(i));
                         model.setWeek(GlobalMethods.getNextWeek(i));

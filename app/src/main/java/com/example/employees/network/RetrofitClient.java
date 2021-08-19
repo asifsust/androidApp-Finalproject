@@ -15,10 +15,15 @@ public class RetrofitClient {
     public OkHttpClient.Builder builder = new OkHttpClient.Builder();
     public HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
+    /**
+     *
+     */
     public RetrofitClient(){
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
         builder.addInterceptor(httpLoggingInterceptor);
-
+        /**
+         *
+         */
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -26,12 +31,20 @@ public class RetrofitClient {
                 .build();
     }
 
+    /**
+     *
+     * @return
+     */
     public static synchronized RetrofitClient getInstance(){
         if (retrofitClient == null)
             retrofitClient = new RetrofitClient();
         return retrofitClient;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApiResponse getApi(){
         return  retrofit.create(ApiResponse.class);
     }

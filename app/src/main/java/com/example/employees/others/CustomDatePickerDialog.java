@@ -6,6 +6,8 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+
+
 public class CustomDatePickerDialog extends DatePickerDialog{
 
         private boolean mIgnoreEvent = false, mignorsunday = true;
@@ -15,6 +17,17 @@ public class CustomDatePickerDialog extends DatePickerDialog{
         public static int dateflag = 0;
         public static int dateflag2 = 0;
 
+    /**
+     *
+     * @param context
+     * @param callBack
+     * @param year
+     * @param monthOfYear
+     * @param dayOfMonth
+     * @param maxYear
+     * @param maxMonth
+     * @param maxDay
+     */
         public CustomDatePickerDialog(Context context, DatePickerDialog.OnDateSetListener callBack,
                                       int year, int monthOfYear, int dayOfMonth, int maxYear,
                                       int maxMonth, int maxDay) {
@@ -39,6 +52,13 @@ public class CustomDatePickerDialog extends DatePickerDialog{
 
         }
 
+    /**
+     *
+     * @param view
+     * @param year
+     * @param month
+     * @param day
+     */
         @Override
         public void onDateChanged(DatePicker view, int year, int month, int day) {
             // TODO Auto-generated method stub

@@ -34,6 +34,13 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
     private UserSession userSession;
     private final SimpleCallBack simpleCallBack;
 
+    /**
+     *
+     * @param context
+     * @param list
+     * @param navController
+     * @param simpleCallBack
+     */
     public EmployeesAdapter(Context context, ArrayList<EmployeeData> list, NavController navController, SimpleCallBack simpleCallBack) {
         this.context = context;
         this.list = list;
@@ -41,12 +48,23 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         this.simpleCallBack = simpleCallBack;
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(RowEmployessBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         EmployeeData data = list.get(position);
@@ -61,7 +79,9 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
             bundle.putSerializable("object",data);
             navController.navigate(R.id.action_employeesFragment_to_viewEmployeeFragment,bundle);
         });
-
+        /**
+         *
+         */
         holder.binding.textEditEmployee.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("object",data);
@@ -71,6 +91,10 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         holder.binding.textRemoveEmp.setOnClickListener(v -> showEmpRemoveDialog(data));
     }
 
+    /**
+     *
+     * @param data
+     */
     private void showEmpRemoveDialog(EmployeeData data) {
         RemoveEmployeDialogBinding binding = RemoveEmployeDialogBinding.inflate(LayoutInflater.from(context),null,false);
         Dialog dialog = new Dialog(context);
@@ -89,6 +113,11 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         dialog.show();
     }
 
+    /**
+     *
+     * @param id
+     * @param dialogRoot
+     */
     private void showConfirmRemoveDialog(int id,Dialog dialogRoot) {
         userSession = new UserSession(context);
         ConfirmRemoveEmpDialogBinding binding = ConfirmRemoveEmpDialogBinding.inflate(LayoutInflater.from(context),null,false);
@@ -118,11 +147,18 @@ public class EmployeesAdapter extends RecyclerView.Adapter<EmployeesAdapter.MyVi
         dialog.show();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return list.size();
     }
 
+    /**
+     *
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final RowEmployessBinding binding;
         public MyViewHolder(RowEmployessBinding binding) {

@@ -8,7 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class AssignShiftInfo implements Serializable
 {
-
+    /**
+     *
+     */
     @SerializedName("id")
     @Expose
     private Integer id;

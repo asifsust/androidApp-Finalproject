@@ -45,9 +45,17 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
     private String selectedWardId;
     private ArrayAdapter<String> wardNameAdapter;
     private ArrayList<String> wardNameList;
-
+    /**
+     *
+     */
     private final GlobalMethods globalMethods;
 
+    /**
+     *
+     * @param context
+     * @param myList
+     * @param date
+     */
     public AvailableDutiesAdapter(Context context, ArrayList<GetShiftsResponse> myList,String date) {
         this.context = context;
         this.myList = myList;
@@ -55,16 +63,29 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         globalMethods = new GlobalMethods(context);
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(RowAvailableDutyBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         GetShiftsResponse model = myList.get(position);
-
+        /**
+         *
+         */
         TextView shiftNameTV,roleTV,timeTV,restTV,workTimeTV;
         ImageView imageArrowDown;
         AppCompatButton bookBankBtn;
@@ -118,6 +139,10 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         });
     }
 
+    /**
+     *
+     * @param model
+     */
     private void debug(GetShiftsResponse model) {
         Log.d(TAG, "onBindViewHolder: server_end_time: "+model.getEndTime());
         Log.d(TAG, "onBindViewHolder: local_current_time: "+GlobalMethods.getCurrentTime());
@@ -125,7 +150,10 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         Log.d(TAG, "onBindViewHolder: current_date: "+GlobalMethods.getCurrentDate());
     }
 
-
+    /**
+     *
+     * @param model
+     */
     private void showBookingDialog(GetShiftsResponse model) {
         Dialog dialog = new Dialog(context);
         ConfirmBookingDialogBinding binding  = ConfirmBookingDialogBinding.inflate(LayoutInflater.from(context),null,false);
@@ -138,7 +166,9 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         binding.textTime.setText(time);
         binding.textDate.setText(date);
         binding.textShift.setText(model.getName());
-
+        /**
+         *
+         */
         binding.spinnerShift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -154,7 +184,9 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         });
 
         binding.buttonCancel.setOnClickListener(v -> dialog.dismiss());
-
+        /**
+         *
+         */
         binding.buttonBookBank.setOnClickListener(v -> {
             if (selectedWardId.equals("")){
                 Toast.makeText(context, "Select ward", Toast.LENGTH_SHORT).show();
@@ -177,11 +209,18 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         dialog.show();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return myList.size();
     }
 
+    /**
+     *
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final RowAvailableDutyBinding binding;
         public MyViewHolder(RowAvailableDutyBinding binding) {
@@ -190,6 +229,10 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         }
     }
 
+    /**
+     *
+     * @param spinner
+     */
     private void getShifts(Spinner spinner) {
         myWardsList = new ArrayList<>();
         wardNameList = new ArrayList<>();
@@ -221,6 +264,13 @@ public class AvailableDutiesAdapter extends RecyclerView.Adapter<AvailableDuties
         getWardApi.getWard();
     }
 
+    /**
+     *
+     * @param shiftStartTime
+     * @param shiftEndTime
+     * @return
+     * @throws ParseException
+     */
     private boolean checkValidTime(String shiftStartTime,String shiftEndTime) throws ParseException {
         if (!GlobalMethods.isValidTimeForShift(shiftStartTime,shiftEndTime,GlobalMethods.getCurrentTime())){
             Toast.makeText(context, "Ops! you cann't assign this shift", Toast.LENGTH_SHORT).show();

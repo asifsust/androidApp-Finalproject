@@ -77,6 +77,13 @@ public class ManagerProfileFragment extends Fragment {
 
     private File file;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,6 +92,11 @@ public class ManagerProfileFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -108,6 +120,10 @@ public class ManagerProfileFragment extends Fragment {
         binding.textChangeImage.setOnClickListener(v -> chooseImageFromGallery());
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean permission() {
         if (SDK_INT >= Build.VERSION_CODES.R) { // R is Android 11
             return Environment.isExternalStorageManager();
@@ -120,6 +136,9 @@ public class ManagerProfileFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     */
     public void RequestPermission_Dialog() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
             try {
@@ -137,6 +156,12 @@ public class ManagerProfileFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -154,6 +179,12 @@ public class ManagerProfileFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -177,6 +208,9 @@ public class ManagerProfileFragment extends Fragment {
 
     }
 
+    /**
+     *
+     */
     ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -216,6 +250,9 @@ public class ManagerProfileFragment extends Fragment {
             }
     );
 
+    /**
+     *
+     */
     private void uploadImageToServer() {
         MultipartBody.Part filePart;
         if (file != null){
@@ -227,6 +264,14 @@ public class ManagerProfileFragment extends Fragment {
         api.changeImage();
     }
 
+    /**
+     *
+     * @param context
+     * @param uri
+     * @param orientation
+     * @return
+     * @throws IOException
+     */
     public static Bitmap rotateImage(Context context, Uri uri, int orientation) throws IOException {
 
         ParcelFileDescriptor parcelFileDescriptor =
@@ -245,6 +290,12 @@ public class ManagerProfileFragment extends Fragment {
         return bitmap;
     }
 
+    /**
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
     public static int getOrientation(Context context, Uri uri) {
 
         int rotate = 0;
@@ -295,6 +346,9 @@ public class ManagerProfileFragment extends Fragment {
         return rotate;
     }
 
+    /**
+     *
+     */
     private void setData() {
         if (user != null){
             binding.textName.setText(user.getName());
@@ -314,6 +368,11 @@ public class ManagerProfileFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param bitmapImage
+     * @return
+     */
     private String saveToInternalStorage(Bitmap bitmapImage){
         ContextWrapper cw = new ContextWrapper(context);
         // path to /data/data/yourapp/app_data/imageDir
@@ -338,6 +397,10 @@ public class ManagerProfileFragment extends Fragment {
         return directory.getAbsolutePath();
     }
 
+    /**
+     *
+     * @param path
+     */
     private void loadImageFromStorage(String path)
     {
 
@@ -353,6 +416,9 @@ public class ManagerProfileFragment extends Fragment {
 
     }
 
+    /**
+     *
+     */
     private void setImage() {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(requireContext()));
@@ -381,16 +447,33 @@ public class ManagerProfileFragment extends Fragment {
                 Log.d(TAG, "onLoadingStarted: loading started");
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             * @param failReason
+             */
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 Log.d(TAG, "onLoadingFailed: loading failed: "+failReason.toString());
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             * @param loadedImage
+             */
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 Log.d(TAG, "onLoadingComplete: loading complete");
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             */
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
                 Log.d(TAG, "onLoadingCancelled: loading canceled");
@@ -398,6 +481,9 @@ public class ManagerProfileFragment extends Fragment {
         });
     }
 
+    /**
+     *
+     */
     private void init() {
         GlobalMethods.showAddMenu(false);
         context = requireContext();

@@ -29,6 +29,13 @@ public class EmployeesFragment extends Fragment {
     private EmployeesAdapter employeesAdapter;
     private NavController navController;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +43,11 @@ public class EmployeesFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -49,6 +61,9 @@ public class EmployeesFragment extends Fragment {
 
     }
 
+    /**
+     *
+     */
     private void setRecyclerView() {
         employeeList = new ArrayList<>();
         RecyclerView recyclerView = binding.rvEmployees;
@@ -58,6 +73,9 @@ public class EmployeesFragment extends Fragment {
         recyclerView.setAdapter(employeesAdapter);
     }
 
+    /**
+     *
+     */
     private void getEmployees() {
         binding.refreshLayout.setRefreshing(false);
         employeeList.clear();

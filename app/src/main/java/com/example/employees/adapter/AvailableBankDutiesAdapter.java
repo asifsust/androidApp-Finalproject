@@ -14,7 +14,9 @@ import com.example.employees.model.AvailableBankDutiesModel;
 import java.util.ArrayList;
 
 public class AvailableBankDutiesAdapter extends RecyclerView.Adapter<AvailableBankDutiesAdapter.MyViewHolder> {
-
+    /**
+     *
+     */
     private final Context context;
     private final ArrayList<AvailableBankDutiesModel> myList;
 
@@ -23,12 +25,23 @@ public class AvailableBankDutiesAdapter extends RecyclerView.Adapter<AvailableBa
         this.myList = myList;
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(RowAvailableBankDutiesBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false));
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AvailableBankDutiesModel model = myList.get(position);
@@ -47,6 +60,9 @@ public class AvailableBankDutiesAdapter extends RecyclerView.Adapter<AvailableBa
         return myList.size();
     }
 
+    /**
+     *
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private final RowAvailableBankDutiesBinding binding;
         public MyViewHolder(RowAvailableBankDutiesBinding binding) {

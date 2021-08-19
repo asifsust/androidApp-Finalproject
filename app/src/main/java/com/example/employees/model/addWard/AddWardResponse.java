@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class AddWardResponse implements Serializable
 {
-
+    /**
+     *
+     */
     @SerializedName("ward")
     @Expose
     private Ward ward;

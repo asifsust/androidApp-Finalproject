@@ -57,6 +57,13 @@ public class AssignShiftFragment extends Fragment{
     private String shiftEndTime,shiftStartTime;
     private final String TAG = this.getClass().getName();
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +72,11 @@ public class AssignShiftFragment extends Fragment{
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,7 +112,9 @@ public class AssignShiftFragment extends Fragment{
             myDatePicker.show();
 
         });
-
+        /**
+         *
+         */
         binding.buttonConfirmShift.setOnClickListener(v -> {
             String shift_id = selectedShiftId;
             String ward_id = selectedWardId;
@@ -119,7 +133,9 @@ public class AssignShiftFragment extends Fragment{
 
         getShifts();
         getWards();
-
+        /**
+         *
+         */
         binding.spinnerShift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -141,6 +157,10 @@ public class AssignShiftFragment extends Fragment{
                 }
             }
 
+            /**
+             *
+             * @param parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -155,6 +175,10 @@ public class AssignShiftFragment extends Fragment{
                 else selectedWardId = "";
             }
 
+            /**
+             *
+             * @param parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -162,10 +186,18 @@ public class AssignShiftFragment extends Fragment{
         });
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean isToday() {
         return GlobalMethods.getCurrentDate().equals(selectedDate);
     }
 
+    /**
+     *
+     * @throws ParseException
+     */
     private void checkValidTime() throws ParseException {
 
         if (!GlobalMethods.isValidTimeForShift(shiftStartTime,shiftEndTime,GlobalMethods.getCurrentTime())){
@@ -175,6 +207,9 @@ public class AssignShiftFragment extends Fragment{
         }
     }
 
+    /**
+     *
+     */
     private void init() {
         context = requireContext();
         GlobalMethods.showAddMenu(false);
@@ -187,6 +222,9 @@ public class AssignShiftFragment extends Fragment{
         wardNameList = new ArrayList<>();
     }
 
+    /**
+     *
+     */
     private void checkTodayBook() {
         GetAllShiftsApi api = new GetAllShiftsApi(context, selectedDate, user_id, message -> {
             if (message.equals("ok")){
@@ -203,6 +241,9 @@ public class AssignShiftFragment extends Fragment{
         api.allShiftByDate();
     }
 
+    /**
+     *
+     */
     private void getWards() {
         GetWardApi getWardApi = new GetWardApi(requireContext(), new CallBack() {
             @Override
@@ -210,6 +251,10 @@ public class AssignShiftFragment extends Fragment{
 
             }
 
+            /**
+             *
+             * @param wardList
+             */
             @Override
             public void getWardCallBack(ArrayList<GetWardsResponse> wardList) {
                 wardNameList.add("Select Ward");

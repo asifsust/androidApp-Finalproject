@@ -32,6 +32,13 @@ public class AllShiftsFragment extends Fragment {
     private AllShiftsAdapter adapter;
     private CustomLoadingDialog loadingDialog;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +46,11 @@ public class AllShiftsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -47,6 +59,9 @@ public class AllShiftsFragment extends Fragment {
         binding.refreshLayout.setOnRefreshListener(this::getData);
     }
 
+    /**
+     *
+     */
     private void init() {
         context = requireContext();
         GlobalMethods.showAddMenu(false);
@@ -56,6 +71,9 @@ public class AllShiftsFragment extends Fragment {
         binding.shiftsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
+    /**
+     *
+     */
     private void getData() {
         loadingDialog.start();
         binding.refreshLayout.setRefreshing(false);
@@ -77,6 +95,10 @@ public class AllShiftsFragment extends Fragment {
                 }else Toast.makeText(context, "No available shifts found", Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             *
+             * @param wardList
+             */
             @Override
             public void getWardCallBack(ArrayList<GetWardsResponse> wardList) {
 

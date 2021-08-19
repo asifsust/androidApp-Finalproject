@@ -106,7 +106,7 @@ public class UpdateEmployeeApi {
             public void onResponse(@NonNull Call<EmployeeUpdateResponse> call, @NonNull Response<EmployeeUpdateResponse> response) {
                 loadingDialog.dismiss();
                 if (response.isSuccessful()){
-                    Toast.makeText(context, "Successfully Employee Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Successfully Employee Information Updated!", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onResponse: success");
 
                     navController.navigate(R.id.action_addNewEmployeeFragment_to_employeesFragmentForUpdateEmployee);

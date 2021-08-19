@@ -69,11 +69,18 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<TimeSheetAdapter.Time
         dialog.show();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return timeSheetList.size();
     }
 
+    /**
+     *
+     */
     public static class TimeSheetViewHolder extends RecyclerView.ViewHolder {
         private final RowTimesheetsBinding binding;
         public TimeSheetViewHolder(RowTimesheetsBinding binding) {

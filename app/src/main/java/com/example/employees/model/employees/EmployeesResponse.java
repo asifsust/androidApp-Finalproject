@@ -21,10 +21,18 @@ public class EmployeesResponse implements Serializable
     private Meta meta;
     private final static long serialVersionUID = -8972757952985437645L;
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<EmployeeData> getData() {
         return data;
     }
 
+    /**
+     *
+     * @param data
+     */
     public void setData(ArrayList<EmployeeData> data) {
         this.data = data;
     }
@@ -33,6 +41,10 @@ public class EmployeesResponse implements Serializable
         return links;
     }
 
+    /**
+     *
+     * @param links
+     */
     public void setLinks(Links links) {
         this.links = links;
     }

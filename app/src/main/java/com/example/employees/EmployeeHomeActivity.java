@@ -49,6 +49,8 @@ public class EmployeeHomeActivity extends AppCompatActivity implements View.OnCl
         binding.drawer.layoutAbout.setOnClickListener(this);
     }
 
+
+
     private void setUserDataInDrawer() {
         binding.drawer.textName.setText(globalMethods.getUserName());
         binding.drawer.textRole.setText(globalMethods.getUserRole());

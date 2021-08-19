@@ -74,6 +74,13 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
     private EmployeeData data;
     private ArrayAdapter<String> spinnerAdapter;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +89,11 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -102,7 +114,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         int maxYear = 2006;
         int maxMonth = 11;
         int maxDay = 31;
-
+        /**
+         *
+         */
         binding.buttonSelectBirthDate.setOnClickListener(v -> {
             DatePickerDialog myDatePicker = new CustomDatePickerDialog(requireContext(), (view12, year, month, dayOfMonth) -> {
                 month++;
@@ -117,7 +131,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
             myDatePicker.show();
 
         });
-
+        /**
+         *
+         */
         binding.buttonSelectJoiningDate.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(v.getContext(), R.style.DialogTheme,
                     (view1, year, month, dayOfMonth) -> {
@@ -141,7 +157,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         );
 
         setRoleSpinner();
-
+        /**
+         *
+         */
         if (arguments != null && arguments.containsKey("object")){
             data = (EmployeeData) requireArguments().getSerializable("object");
             setToolbarTitle("Update Employee");
@@ -149,12 +167,17 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
             binding.layoutConfirmPasswordField.setVisibility(View.GONE);
         }else setToolbarTitle("Add Employee");
 
-
+        /**
+         *
+         */
         if (data != null){
             setDataForUpdate();
         }
     }
 
+    /**
+     *
+      */
     private void setRoleSpinner() {
         spinnerAdapter = new ArrayAdapter<>(
                 requireContext(),
@@ -162,11 +185,16 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
                 R.id.textSpinner,
                 paths
         );
-
+        /**
+         *
+         */
         binding.mySpinner.setAdapter(spinnerAdapter);
         binding.mySpinner.setOnItemSelectedListener(this);
     }
 
+    /**
+     *
+     */
     private void updateEmployee() {
         String userId = binding.edtUserId.getText().toString();
         String name = binding.edtName.getText().toString();
@@ -187,7 +215,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         String role_id;
         if (employeeRole.equals(getString(R.string.RGN))) role_id = "2";
         else role_id = "3";
-
+        /**
+         *
+         */
         UpdateEmployeeApi updateEmployeeApi = new UpdateEmployeeApi(
                 requireContext(),
                 stringToBody(name),
@@ -206,10 +236,17 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
 
     }
 
+    /**
+     *
+     * @param title
+     */
     private void setToolbarTitle(String title) {
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(title);
     }
 
+    /**
+     *
+     */
     private void setDataForUpdate() {
         binding.edtUserId.setText(String.valueOf(data.getUserId())); binding.edtUserId.setEnabled(false);
         binding.edtName.setText(data.getName());
@@ -225,6 +262,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         binding.buttonAdd.setText(R.string.update);
     }
 
+    /**
+     *
+     */
     private void setImage() {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(requireContext()));
@@ -244,23 +284,42 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
 
                 // build will build the view for displaying image..
                 .build();
-
+        /**
+         *
+         */
         imageLoader.displayImage(data.getImage(), binding.circleImageProfile, options, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
                 Log.d(TAG, "onLoadingStarted: loading started");
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             * @param failReason
+             */
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 Log.d(TAG, "onLoadingFailed: loading failed: "+failReason.toString());
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             * @param loadedImage
+             */
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 Log.d(TAG, "onLoadingComplete: loading complete");
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             */
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
                 Log.d(TAG, "onLoadingCancelled: loading canceled");
@@ -268,6 +327,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         });
     }
 
+    /**
+     *
+     */
     private void addEmployeeValidation() {
         String userId = binding.edtUserId.getText().toString();
         String password = binding.edtPassword.getText().toString();
@@ -324,6 +386,10 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isRoleSelected(){
         if (employeeRole.equals("Select")){
             Toast.makeText(requireContext(), R.string.select_role, Toast.LENGTH_SHORT).show();
@@ -332,6 +398,9 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         return true;
     }
 
+    /**
+     *
+     */
     private void chooseImageFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -340,16 +409,29 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
 
     }
 
+    /**
+     *
+     * @param string
+     * @return
+     */
     public RequestBody stringToBody(String string){
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"), string);
         return body;
     }
 
+    /**
+     *
+     * @param imageFile
+     * @return
+     */
     public RequestBody fileToBody(File imageFile){
         RequestBody body = RequestBody.create(MediaType.parse("image/*"), imageFile);
         return body;
     }
 
+    /**
+     *
+     */
     ActivityResultLauncher<Intent> startActivityForResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -384,12 +466,22 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
             }
     );
 
+    /**
+     *
+     * @param bitmap
+     * @return
+     */
     private byte[] reducingImgSize(Bitmap bitmap) { //return byte
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos); //reduce 25%
         return baos.toByteArray();
     }
 
+    /**
+     *
+     * @param bitmap
+     * @return
+     */
     private Bitmap reduceBitmapSize(Bitmap bitmap){ //return bitmap
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 25, out);
@@ -397,6 +489,14 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         return decoded;
     }
 
+    /**
+     *
+     * @param context
+     * @param uri
+     * @param orientation
+     * @return
+     * @throws IOException
+     */
     public static Bitmap rotateImage(Context context, Uri uri, int orientation) throws IOException {
 
         ParcelFileDescriptor parcelFileDescriptor =
@@ -415,6 +515,12 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         return bitmap;
     }
 
+    /**
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
     public static int getOrientation(Context context, Uri uri) {
 
         int rotate = 0;
@@ -465,6 +571,13 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         return rotate;
     }
 
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (position){
@@ -482,6 +595,10 @@ public class AddNewEmployeeFragment extends Fragment implements AdapterView.OnIt
         }
     }
 
+    /**
+     *
+     * @param parent
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

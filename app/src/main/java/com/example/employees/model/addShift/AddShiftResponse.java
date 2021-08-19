@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class AddShiftResponse implements Serializable
 {
-
+    /**
+     *
+     */
     @SerializedName("shift")
     @Expose
     private Shift shift;
@@ -15,10 +17,18 @@ public class AddShiftResponse implements Serializable
     @Expose
     private String message;
 
+    /**
+     *
+     * @return
+     */
     public Shift getShift() {
         return shift;
     }
 
+    /**
+     *
+     * @param shift
+     */
     public void setShift(Shift shift) {
         this.shift = shift;
     }

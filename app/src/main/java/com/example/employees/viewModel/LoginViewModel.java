@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.employees.VerifyEmailActivity;
 import com.example.employees.R;
-import com.example.employees.SignUpActivity;
 import com.example.employees.model.User;
 import com.example.employees.network.callingApi.LoginApi;
 
@@ -57,9 +56,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void onSignUpClick(){
-        context.startActivity(new Intent(this.context, SignUpActivity.class));
-    }
 
     public void onForgotPasswordClick(){
         context.startActivity(new Intent(this.context, VerifyEmailActivity.class));

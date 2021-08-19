@@ -16,7 +16,9 @@ import com.example.employees.others.GlobalMethods;
 import java.util.ArrayList;
 
 public class AllAssignShiftsAdapter extends RecyclerView.Adapter<AllAssignShiftsAdapter.AssignShiftViewHolder> {
-
+    /**
+     *
+     */
     private final Context context;
     private final ArrayList<Datum> allShiftList;
     private final NavController navController;
@@ -27,12 +29,23 @@ public class AllAssignShiftsAdapter extends RecyclerView.Adapter<AllAssignShifts
         this.navController = navController;
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public AssignShiftViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AssignShiftViewHolder(RowAllShiftsBinding.inflate(LayoutInflater.from(parent.getContext()),null,false));
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull AssignShiftViewHolder holder, int position) {
         Datum model = allShiftList.get(position);
@@ -46,11 +59,18 @@ public class AllAssignShiftsAdapter extends RecyclerView.Adapter<AllAssignShifts
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return allShiftList.size();
     }
 
+    /**
+     *
+     */
     public static class AssignShiftViewHolder extends RecyclerView.ViewHolder {
         RowAllShiftsBinding rowAllShiftsBinding;
         public AssignShiftViewHolder(RowAllShiftsBinding rowAllShiftsBinding) {

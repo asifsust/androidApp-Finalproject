@@ -25,6 +25,13 @@ public class ShiftsFragment extends Fragment {
     @SuppressLint("StaticFieldLeak")
     public static NavController navController;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +40,11 @@ public class ShiftsFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+      * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -46,11 +58,17 @@ public class ShiftsFragment extends Fragment {
 
     }
 
+    /**
+     *
+     */
     private void initRecycler() {
         binding.recyclerViewShift.setHasFixedSize(true);
         binding.recyclerViewShift.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
+    /**
+     *
+     */
     public void getShifts(){
         GlobalValues.isManager = true;
         binding.refreshLayout.setRefreshing(false);

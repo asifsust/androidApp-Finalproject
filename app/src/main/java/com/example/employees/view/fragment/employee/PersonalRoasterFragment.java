@@ -32,8 +32,9 @@ public class PersonalRoasterFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         init();
         GlobalValues.isManager = false;
@@ -41,6 +42,8 @@ public class PersonalRoasterFragment extends Fragment {
         binding.refreshLayout.setOnRefreshListener(this::getData);
 
     }
+
+
 
     private void getData() {
         binding.refreshLayout.setRefreshing(false);

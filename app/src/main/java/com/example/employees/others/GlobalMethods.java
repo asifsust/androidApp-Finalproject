@@ -51,13 +51,14 @@ public class GlobalMethods {
         user = gson.fromJson(userSession.getEmployeeDataUser(),User.class);
     }
 
+    // setting userID length to 6 digits
     public static boolean editTextValidator(String value, TextView warningTV, LinearLayout layout, String type){
         if (type.equals("user_id") && value.length()<6){
             layout.setVisibility(View.VISIBLE);
             warningTV.setText(R.string.user_id_must_be_six_digit);
             return false;
         }
-
+        // setting password length
         if (type.equals("password") && (value.length()<8 || value.length()>30)){
             layout.setVisibility(View.VISIBLE);
             warningTV.setText(R.string.your_password_must_be_greater_then_8_and_less_then_30);
@@ -66,7 +67,7 @@ public class GlobalMethods {
 
         return true;
     }
-
+    // password match checking
     public static boolean matchPassword(String password, String confirm_password, Context context){
         if (!password.equals(confirm_password)){
             Toast.makeText(context, R.string.password_not_matched, Toast.LENGTH_SHORT).show();
@@ -75,7 +76,7 @@ public class GlobalMethods {
 
         return true;
     }
-
+    // valid email checker
     public static boolean isValidEmail(String email,Context context) {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             Toast.makeText(context, R.string.invalid_email, Toast.LENGTH_SHORT).show();
@@ -94,7 +95,7 @@ public class GlobalMethods {
 
         return true;
     }
-
+    // setting mobile number length to 11 digits only
     public static boolean phoneNumberLength(Context context,String mobile){
         if (mobile.length() != 11){
             Toast.makeText(context, "Mobile number length must be 11", Toast.LENGTH_SHORT).show();

@@ -20,6 +20,10 @@ public class VerifyEmailActivity extends AppCompatActivity {
     private String enteredCode;
     private String email;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -26,25 +26,43 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyViewHolder> {
-
+    /**
+     *
+     */
     private final Context context;
     private final ArrayList<GetShiftsResponse> list;
     private final SimpleCallBack simpleCallBack;
 
     private String startTime,endTime;
 
+    /**
+     *
+     * @param context
+     * @param list
+     * @param simpleCallBack
+     */
     public AllShiftsAdapter(Context context, ArrayList<GetShiftsResponse> list,SimpleCallBack simpleCallBack) {
         this.context = context;
         this.list = list;
         this.simpleCallBack = simpleCallBack;
     }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(RowOnlyShiftsBinding.inflate(LayoutInflater.from(context),parent,false));
     }
 
+    /**
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         GetShiftsResponse model = list.get(position);
@@ -59,6 +77,10 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
         holder.binding.textEditShift.setOnClickListener(v -> showAddShiftDialog(model));
     }
 
+    /**
+     *
+     * @param model
+     */
     private void showAddShiftDialog(GetShiftsResponse model) {
         Dialog dialog = new Dialog(context);
         AddShiftDialogBinding shiftBinding = AddShiftDialogBinding.inflate(LayoutInflater.from(context),null,false);
@@ -80,7 +102,9 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
                 api.updateShift();
             }
         });
-
+        /**
+         *
+         */
         shiftBinding.edtShiftName.setText(model.getName());
         shiftBinding.buttonStartTime.setText(GlobalMethods.changeTimeFormat(model.getStartTime()));
         shiftBinding.buttonEndTime.setText(GlobalMethods.changeTimeFormat(model.getEndTime()));
@@ -91,6 +115,10 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
         dialog.show();
     }
 
+    /**
+     *
+     * @param button
+     */
     private void selectTime(AppCompatButton button) {
         Calendar calendar = Calendar.getInstance();
         int mHour = calendar.get(Calendar.HOUR);
@@ -105,7 +133,9 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
                 if (hourOfDay == 0) hourOfDay=12;
                 amPm = "AM";
             }
-
+            /**
+             *
+             */
             String time = hourOfDay+":"+minute+" "+amPm;
             String timeToUpload = myHour+":"+minute+":00";
             button.setText(time);
@@ -118,6 +148,10 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
         timePickerDialog.show();
     }
 
+    /**
+     *
+     * @param id
+     */
     private void deleteWarningDialog(int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Alert!!");
@@ -131,6 +165,10 @@ public class AllShiftsAdapter extends RecyclerView.Adapter<AllShiftsAdapter.MyVi
         dialog.show();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return list.size();

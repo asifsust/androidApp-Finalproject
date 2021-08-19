@@ -31,6 +31,13 @@ public class ViewEmployeeFragment extends Fragment {
     private EmployeeData data;
     private NavController navController;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +45,11 @@ public class ViewEmployeeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,6 +68,9 @@ public class ViewEmployeeFragment extends Fragment {
 
     }
 
+    /**
+     *
+     */
     private void setData() {
         Log.d(TAG, "setData: birth: "+data.getDateOfBirth());
         Log.d(TAG, "setData: join: "+data.getJoiningDate());
@@ -70,6 +85,9 @@ public class ViewEmployeeFragment extends Fragment {
         setImage();
     }
 
+    /**
+     *
+     */
     private void setImage() {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(requireContext()));
@@ -96,6 +114,12 @@ public class ViewEmployeeFragment extends Fragment {
                 Log.d(TAG, "onLoadingStarted: loading started");
             }
 
+            /**
+             *
+             * @param imageUri
+             * @param view
+             * @param failReason
+             */
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 Log.d(TAG, "onLoadingFailed: loading failed: "+failReason.toString());
